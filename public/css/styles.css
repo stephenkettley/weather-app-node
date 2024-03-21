@@ -6,3 +6,15 @@ h1 {
 img {
   width: 350px;
 }
+
+#city {
+  color: red;
+}
+
+.weather-desc {
+  font-weight: bold;
+}
+
+.footer-creator {
+  font-style: italic;
+}
