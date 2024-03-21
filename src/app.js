@@ -25,9 +25,27 @@ app.get("/", (req, res) => {
   });
 });
 
+app.get("/weather", (req, res) => {
+  res.render("error", {
+    name: "Stephen Kettley",
+    mainError: "No City",
+    errorDesc:
+      "Please enter the name of a city as an additional route! e.g. weather/tokyo",
+  });
+});
+
+app.get("/about", (req, res) => {
+  res.render("about", {
+    name: "Stephen Kettley",
+    desc: "This is a weather app built using Node.js, Express.js and Handlebars.js",
+    title: "About The Project",
+  });
+});
+
 app.get("/weather/:city", (req, res) => {
   const cityName =
     req.params.city.charAt(0).toUpperCase() + req.params.city.slice(1);
+
   getTemperature(cityName, (error, { current }) => {
     if (error) {
       res.send(error);
@@ -44,7 +62,11 @@ app.get("/weather/:city", (req, res) => {
 });
 
 app.use((req, res) => {
-  res.send("404 Not Found");
+  res.render("error", {
+    mainError: "404 - Not Found",
+    errorDesc: "The page you are looking for does not exist!",
+    name: "Stephen Kettley",
+  });
 });
 
 app.listen(port, () => console.log(`server is running on port ${port}...`));
